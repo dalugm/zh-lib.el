@@ -105,7 +105,7 @@ Possible values:
     (zh-lib--load-char-table-file "punctuation"))
   zh-lib--punctuation-alist)
 
-(defun zh-lib--build-regexp-char
+(defun zh-lib-build-regexp-char
   (char &optional no-punctuation-p only-chinese-p)
   "Build regexp for a character CHAR.
 
@@ -135,7 +135,7 @@ NO-PUNC-P: Punctuations are not included.
 ONLY-CHINESE-P: English characters are not included."
   (mapconcat
     (lambda (char)
-      (zh-lib--build-regexp-char char no-punc-p only-chinese-p))
+      (zh-lib-build-regexp-char char no-punc-p only-chinese-p))
     str
     ""))
 
@@ -143,7 +143,7 @@ ONLY-CHINESE-P: English characters are not included."
   "Build regexp form THING for search."
   (cond
     ((integerp thing)
-      (zh-lib--build-regexp-char
+      (zh-lib-build-regexp-char
         thing (not zh-lib-with-punctuation)))
     ((stringp thing)
       (zh-lib-build-regexp-string

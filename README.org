@@ -13,7 +13,7 @@ Simplified/Traditional Chinese characters.
   - [[#zh-lib-with-punctuation][=zh-lib-with-punctuation=]]
   - [[#zh-lib-char-table][=zh-lib-char-table=]]
 - [[#functions][Functions]]
-  - [[#zh-lib--build-regexp-char][=zh-lib--build-regexp-char=]]
+  - [[#zh-lib-build-regexp-char][=zh-lib-build-regexp-char=]]
   - [[#zh-lib-build-regexp-string][=zh-lib-build-regexp-string=]]
   - [[#zh-lib-build-regexp][=zh-lib-build-regexp=]]
 - [[#example][Example]]
@@ -56,16 +56,16 @@ Simplified/Traditional Chinese characters.
    #+END_SRC
 
 * Functions
-** =zh-lib--build-regexp-char=
+** =zh-lib-build-regexp-char=
 
-   =zh-lib--build-regexp-char= converts a letter to a regular expression
+   =zh-lib-build-regexp-char= converts a letter to a regular expression
    containing all the Chinese characters whose zhongwen start with the letter.
    It accepts three parameters:
-   : char &optional no-punc-p only-chinese-p
+   : char &optional no-punctuation-p only-chinese-p
 
    The first parameter =char= is the letter to be converted. The latter three
    parameters are optional.
-   - If =no-punc-p= is =t=: it will not convert English punctuations to
+   - If =no-punctuation-p= is =t=: it will not convert English punctuations to
      Chinese punctuations.
 
    - If =only-chinese-p= is =t=: the resulting regular expression doesn't
@@ -95,7 +95,7 @@ Simplified/Traditional Chinese characters.
 
 ** =zh-lib-build-regexp-string=
 
-   It is same as =zh-lib--build-regexp-char=, except that its first parameter
+   It is same as =zh-lib-build-regexp-char=, except that its first parameter
    is a string so that it can convert a sequence of letters to a regular
    expression.
 ** =zh-lib-build-regexp=
@@ -110,6 +110,7 @@ Simplified/Traditional Chinese characters.
 #+END_SRC
 ** combine with other package
 - my customized [[https://github.com/dalu98/evil-pinyin][evil-pinyin]]
+- my customized [[https://github.com/dalu98/avy-zh][avy-zh]]
 - use ivy to search Chinese
   #+BEGIN_SRC elisp
   (defun my//re-builder-extended-pattern (str)
