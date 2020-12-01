@@ -112,18 +112,18 @@ Possible values:
 NO-PUNCTUATION-P: Punctuations are not included.
 ONLY-CHINESE-P: English characters are not included."
   (let ((diff (- char ?a))
-         regexp)
+        regexp)
     (if (or (>= diff 26) (< diff 0))
-      (or (and (not no-punctuation-p)
-            (assoc-default
-              char
-              (zh-lib--get-punctuation-alist)))
-        (regexp-quote (string char)))
+        (or (and (not no-punctuation-p)
+              (assoc-default
+                char
+                (zh-lib--get-punctuation-alist)))
+          (regexp-quote (string char)))
       (setq regexp (nth diff (zh-lib--get-char-table)))
       (if only-chinese-p
-        (if (string= regexp "")
-          regexp
-          (format "[%s]" regexp))
+          (if (string= regexp "")
+              regexp
+            (format "[%s]" regexp))
         (format "[%c%s]" char
           regexp)))))
 
