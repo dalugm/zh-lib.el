@@ -1,5 +1,5 @@
 #+title: README
-#+author: dalu98
+#+author: dalugm
 #+date: 2020:08:17
 
 * Table of Contents                                               :TOC:noexport:
@@ -25,95 +25,97 @@ Simplified/Traditional Chinese characters.
 
 * Variables
 ** zh-lib-scheme
-   Zhongwen scheme.
 
-   Possible values:
-   - nil: user specified char table.
-   - 'simplified-quanpin-all: quanpin for all simplified characters.
-   - 'simplified-quanpin-common: quanpin of common used 3500 simplified characters.
-   - 'simplified-xiaohe-all: xiaohe shuangpin for all simplified characters.
-   - 'simplified-pinyinjiajia-all: pinyinjiajia shuangpin for all simplified characters.
-   - 'simplified-ziranma-all: ziranma shuangpin for all simplified characters.
-   - 'simplified-weiruan-all: weiruan shuangpin for all simplified characters.
-   - 'traditional-quanpin-all: quanpin for all traditional characters.
-   - 'simplified-traditional-quanpin-all: quanpin for all simplified and traditional characters.
+Zhongwen scheme.
+
+Possible values:
+- nil: user specified char table.
+- 'simplified-quanpin-all: quanpin for all simplified characters.
+- 'simplified-quanpin-common: quanpin of common used 3500 simplified characters.
+- 'simplified-xiaohe-all: xiaohe shuangpin for all simplified characters.
+- 'simplified-pinyinjiajia-all: pinyinjiajia shuangpin for all simplified characters.
+- 'simplified-ziranma-all: ziranma shuangpin for all simplified characters.
+- 'simplified-weiruan-all: weiruan shuangpin for all simplified characters.
+- 'traditional-quanpin-all: quanpin for all traditional characters.
+- 'simplified-traditional-quanpin-all: quanpin for all simplified and traditional characters.
 
 ** zh-lib-with-punctuation
 
-   Whether to search Chinese punctuations.
+Whether to search Chinese punctuation.
 
 ** zh-lib-char-table
-   User specified char table.
 
-   #+BEGIN_SRC elisp
-     (setq my-char-table
-           (list
-            ;; A
-            "YOU CHAR TABLE FOR A"
-            ;; B
-            "YOU CHAR TABLE FOR B"
-            ;; ....
-            ;; Z
-            "YOU CHAR TABLE FOR Z"))
-     (setq zh-lib-scheme nil)
-     (setq zh-lib-char-table my-char-table)
-   #+END_SRC
+User specified char table.
+
+#+BEGIN_SRC elisp
+  (setq my-char-table
+        (list
+         ;; A
+         "YOU CHAR TABLE FOR A"
+         ;; B
+         "YOU CHAR TABLE FOR B"
+         ;; ....
+         ;; Z
+         "YOU CHAR TABLE FOR Z"))
+  (setq zh-lib-scheme nil)
+  (setq zh-lib-char-table my-char-table)
+#+END_SRC
 
 * Functions
 ** zh-lib-build-regexp-char
 
-   =zh-lib-build-regexp-char= converts a letter to a regular expression
-   containing all the Chinese characters whose zhongwen start with the letter.
-   It accepts three parameters:
+=zh-lib-build-regexp-char= converts a letter to a regular expression
+containing all the Chinese characters whose zhongwen start with the letter.
+It accepts three parameters:
 
-   : char &optional no-punctuation-p only-chinese-p
+: char &optional no-punctuation-p only-chinese-p
 
-   The first parameter =char= is the letter to be converted. The latter three
-   parameters are optional.
+The first parameter =char= is the letter to be converted. The latter three
+parameters are optional.
 
-   - If =no-punctuation-p= is =t=: it will not convert English punctuation to
-     Chinese punctuation.
+- If =no-punctuation-p= is =t=: it will not convert English punctuation to
+  Chinese punctuation.
 
-   - If =only-chinese-p= is =t=: the resulting regular expression doesn't
-     contain the English letter =char=.
+- If =only-chinese-p= is =t=: the resulting regular expression doesn't
+  contain the English letter =char=.
 
-   When converting English punctuation to Chinese/English punctuation, it
-   uses the following table:
+When converting English punctuation to Chinese/English punctuation, it
+uses the following table:
 
-   | English Punctuation | Chinese & English Punctuation |
-   |---------------------+-------------------------------|
-   | ,                   | ，,                           |
-   | .                   | 。.                           |
-   | ?                   | ？?                           |
-   | :                   | ：:                           |
-   | !                   | ！!                           |
-   | -                   | —-                            |
-   | ~                   | ～~                           |
-   | $                   | ￥$                           |
-   | *                   | ×*＊·・                       |
-   |                     | 　                            |
-   | {                   | 『〖｛{                       |
-   | }                   | 』〗｝}                       |
-   | <                   | 《<                           |
-   | >                   | 》>                           |
-   | [                   | [「【［                       |
-   | ]                   | ]」】］                       |
-   | ;                   | ；;                           |
-   | \                   | 、\                           |
-   | (                   | （(                           |
-   | )                   | ）)                           |
-   | '                   | ‘’'                           |
-   | "                   | “”"                           |
+| English Punctuation | Chinese & English Punctuation |
+|---------------------+-------------------------------|
+| ,                   | ，,                           |
+| .                   | 。.                           |
+| ?                   | ？?                           |
+| :                   | ：:                           |
+| !                   | ！!                           |
+| -                   | —-                            |
+| ~                   | ～~                           |
+| $                   | ￥$                           |
+| *                   | ×*＊·・                       |
+|                     | 　                            |
+| {                   | 『〖｛{                       |
+| }                   | 』〗｝}                       |
+| <                   | 《<                           |
+| >                   | 》>                           |
+| [                   | [「【［                       |
+| ]                   | ]」】］                       |
+| ;                   | ；;                           |
+| \                   | 、\                           |
+| (                   | （(                           |
+| )                   | ）)                           |
+| '                   | ‘’'                           |
+| "                   | “”"                           |
 
 ** zh-lib-build-regexp-string
 
-   It is same as =zh-lib-build-regexp-char=, except that its first parameter
-   is a string so that it can convert a sequence of letters to a regular
-   expression.
+It is same as =zh-lib-build-regexp-char=, except that its first parameter
+is a string so that it can convert a sequence of letters to a regular
+expression.
 
 ** zh-lib-build-regexp
 
-   Build regexp from parameters for search.
+Build regexp from parameters for search.
 
 * Example
 ** configuration
@@ -127,24 +129,24 @@ Simplified/Traditional Chinese characters.
 
 ** combine with other package
 
-- my customized [[https://github.com/dalu98/evil-pinyin][evil-pinyin]]
-- my customized [[https://github.com/dalu98/avy-zh][avy-zh]]
+- my customized [[https://github.com/dalugm/evil-pinyin][evil-pinyin]]
+- my customized [[https://github.com/dalugm/avy-zh][avy-zh]]
 - use ivy to search Chinese
 
-  #+BEGIN_SRC elisp
-      (defun my//re-builder-extended-pattern (str)
-        "Enhance ivy search.
-    Search Chinese by building regex compatible with `zh-lib' from STR."
-        (let ((len (length str)))
-          (cond
-            ;; do nothing
-            ((<= (length str) 0))
-            ;; If the first character of input in ivy is ":",
-            ;; remaining input is converted into Chinese pinyin regex.
-            ;; For example, input "/ic" match "isController" or "isCollapsed"
-            ((string= (substring str 0 1) ":")
-              (setq str (zh-lib-build-regexp-string (substring str 1 len) t))))
-          (ivy--regex-plus str)))
-      ;; Enhance search experience
-      (setq ivy-re-builders-alist '((t . my//re-builder-extended-pattern)))
-  #+END_SRC
+#+BEGIN_SRC elisp
+  (defun my//re-builder-extended-pattern (str)
+    "Enhance ivy search.
+  Search Chinese by building regex compatible with `zh-lib' from STR."
+    (let ((len (length str)))
+      (cond
+       ;; do nothing
+       ((<= (length str) 0))
+       ;; If the first character of input in ivy is ‘:’,
+       ;; remaining input is converted into Zhongwen regex.
+       ;; For example, input ‘:zw’ match ‘中文’, ‘植物’ and etc.
+       ((string= (substring str 0 1) ":")
+        (setq str (zh-lib-build-regexp-string (substring str 1 len) t))))
+      (ivy--regex-plus str)))
+  ;; Enhance search experience
+  (setq ivy-re-builders-alist '((t . my//re-builder-extended-pattern)))
+#+END_SRC
