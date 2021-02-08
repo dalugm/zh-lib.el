@@ -1,8 +1,16 @@
 ;;; zh-lib.el --- Zhongwen library for Emacs -*- lexical-binding: t; -*-
 
-;;; Copyright © 2020 dalu. All Rights Reserved.
+;;; Copyright (C) 2020-2021 dalu
 
-;; This program is free software; you can redistribute it and/or modify
+;; Author: dalu <mou.tong@qq.com>
+;; URL: https://github.com/dalugm/zh-lib.el
+;; Version: 0.1
+;; Package-Requires: (emacs "24")
+;; Keywords: Chinese, library
+
+;; This file is NOT part of GNU Emacs.
+
+;; This program is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
 ;; the Free Software Foundation, either version 3 of the License, or
 ;; (at your option) any later version.
@@ -13,13 +21,11 @@
 ;; GNU General Public License for more details.
 
 ;; You should have received a copy of the GNU General Public License
-;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-;; This file is NOT part of GNU Emacs.
+;; along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 ;;; Commentary:
 ;;
-;;  Based on `pinyinlib' and `evil-pinyin'.
+;;  Zhongwen library for Emacs.
 ;;
 
 ;;; Code:

@@ -18,7 +18,7 @@
 
 * About
 
-Based on [[https://github.com/cute-jumper/pinyinlib.el][pinyinlib]] and [[https://github.com/laishulu/evil-pinyin][evil-pinyin]].
+Code based on [[https://github.com/cute-jumper/pinyinlib.el][pinyinlib]] and [[https://github.com/laishulu/evil-pinyin][evil-pinyin]].
 
 Library for converting first letter of Zhongwen to 
 Simplified/Traditional Chinese characters.
@@ -29,15 +29,15 @@ Simplified/Traditional Chinese characters.
 Zhongwen scheme.
 
 Possible values:
-- nil: user specified char table.
-- 'simplified-quanpin-all: quanpin for all simplified characters.
-- 'simplified-quanpin-common: quanpin of common used 3500 simplified characters.
-- 'simplified-xiaohe-all: xiaohe shuangpin for all simplified characters.
-- 'simplified-pinyinjiajia-all: pinyinjiajia shuangpin for all simplified characters.
-- 'simplified-ziranma-all: ziranma shuangpin for all simplified characters.
-- 'simplified-weiruan-all: weiruan shuangpin for all simplified characters.
-- 'traditional-quanpin-all: quanpin for all traditional characters.
-- 'simplified-traditional-quanpin-all: quanpin for all simplified and traditional characters.
+- ~nil~: user specified char table.
+- ~'simplified-quanpin-all~: quanpin for all simplified characters.
+- ~'simplified-quanpin-common~: quanpin of common used 3500 simplified characters.
+- ~'simplified-xiaohe-all~: xiaohe shuangpin for all simplified characters.
+- ~'simplified-pinyinjiajia-all~: pinyinjiajia shuangpin for all simplified characters.
+- ~'simplified-ziranma-all~: ziranma shuangpin for all simplified characters.
+- ~'simplified-weiruan-all~: weiruan shuangpin for all simplified characters.
+- ~'traditional-quanpin-all~: quanpin for all traditional characters.
+- ~'simplified-traditional-quanpin-all~: quanpin for all simplified and traditional characters.
 
 ** zh-lib-with-punctuation
 
@@ -129,7 +129,7 @@ Build regexp from parameters for search.
 
 ** combine with other package
 
-- my customized [[https://github.com/dalugm/evil-pinyin][evil-pinyin]]
+- my customized [[https://github.com/dalugm/evil-zh][evil-zh]]
 - my customized [[https://github.com/dalugm/avy-zh][avy-zh]]
 - use ivy to search Chinese
 
