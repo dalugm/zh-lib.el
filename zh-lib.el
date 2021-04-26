@@ -32,15 +32,14 @@
 
 (defgroup zh-lib nil
   "Zhongwen library for Emacs."
+  :group 'convenience)
+
+(defcustom zh-lib-with-punctuation t
+  "Whether search include Chinese punctuation."
+  :type 'boolean
   :group 'zh-lib)
 
-(defvar zh-lib-with-punctuation t
-  "Include Chinese punctuation.")
-
-(defvar zh-lib-char-table nil
-  "User specified char table.")
-
-(defvar zh-lib-scheme 'simplified-quanpin-all
+(defcustom zh-lib-scheme 'simplified-quanpin-all
   "Zhongwen scheme.
 
 Possible values:
@@ -52,7 +51,12 @@ Possible values:
 - 'simplified-ziranma-all: ziranma shuangpin for all simplified characters.
 - 'simplified-weiruan-all: weiruan shuangpin for all simplified characters.
 - 'traditional-quanpin-all: quanpin for all traditional characters.
-- 'simplified-traditional-quanpin-all: quanpin for all simplified and traditional characters.")
+- 'simplified-traditional-quanpin-all: quanpin for all simplified and traditional characters."
+  :type 'symbol
+  :group 'zh-lib)
+
+(defvar zh-lib-char-table nil
+  "User specified char table.")
 
 ;; dynamically loaded scheme
 (defvar zh-lib--simplified-quanpin-all)
@@ -121,17 +125,16 @@ ONLY-CHINESE-P: English characters are not included."
         regexp)
     (if (or (>= diff 26) (< diff 0))
         (or (and (not no-punctuation-p)
-              (assoc-default
-                char
-                (zh-lib--get-punctuation-alist)))
-          (regexp-quote (string char)))
+                 (assoc-default
+                   char
+                   (zh-lib--get-punctuation-alist)))
+            (regexp-quote (string char)))
       (setq regexp (nth diff (zh-lib--get-char-table)))
       (if only-chinese-p
           (if (string= regexp "")
               regexp
             (format "[%s]" regexp))
-        (format "[%c%s]" char
-          regexp)))))
+        (format "[%c%s]" char regexp)))))
 
 (defun zh-lib-build-regexp-string
   (str &optional no-punc-p only-chinese-p)
