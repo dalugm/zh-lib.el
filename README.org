@@ -16,110 +16,115 @@
 
 * About
 
-Library for converting first letter of Zhongwen to
-Simplified/Traditional Chinese characters.
+  Library for converting first letter of Zhongwen to
+  Simplified/Traditional Chinese characters.
 
 * Variables
 
 ** zh-lib-scheme
 
-Zhongwen scheme.
+   Zhongwen scheme.
 
-Possible values:
-- nil: user specified char table.
-- 'simplified-quanpin-all: quanpin for all simplified characters.
-- 'simplified-quanpin-common: quanpin of common used 3500 simplified characters.
-- 'simplified-xiaohe-all: xiaohe shuangpin for all simplified characters.
-- 'simplified-pinyinjiajia-all: pinyinjiajia shuangpin for all simplified characters.
-- 'simplified-ziranma-all: ziranma shuangpin for all simplified characters.
-- 'simplified-weiruan-all: weiruan shuangpin for all simplified characters.
-- 'traditional-quanpin-all: quanpin for all traditional characters.
-- 'simplified-traditional-quanpin-all: quanpin for all simplified and traditional characters.
+   Possible values:
+   - nil: user specified char table.
+   - 'simplified-quanpin-all: quanpin for all simplified characters.
+   - 'simplified-quanpin-common: quanpin of common used 3500
+     simplified characters.
+   - 'simplified-xiaohe-all: xiaohe shuangpin for all simplified
+     characters.
+   - 'simplified-pinyinjiajia-all: pinyinjiajia shuangpin for all
+     simplified characters.
+   - 'simplified-ziranma-all: ziranma shuangpin for all simplified
+     characters.
+   - 'simplified-weiruan-all: weiruan shuangpin for all simplified
+     characters.
+   - 'traditional-quanpin-all: quanpin for all traditional characters.
+   - 'simplified-traditional-quanpin-all: quanpin for all simplified
+     and traditional characters.
 
 ** zh-lib-with-punctuation
 
-Whether to search Chinese punctuation.
+   Whether to search Chinese punctuation.
 
 ** zh-lib-char-table
 
-User specified char table.
+   User specified char table.
 
-#+BEGIN_SRC elisp
-  (setq my-char-table
-        (list
-         ;; A
-         "YOU CHAR TABLE FOR A"
-         ;; B
-         "YOU CHAR TABLE FOR B"
-         ;; ....
-         ;; Z
-         "YOU CHAR TABLE FOR Z"))
-  (setq zh-lib-scheme nil)
-  (setq zh-lib-char-table my-char-table)
-#+END_SRC
+   #+BEGIN_SRC elisp
+     (setq my-char-table
+           (list
+            ;; A
+            "YOU CHAR TABLE FOR A"
+            ;; B
+            "YOU CHAR TABLE FOR B"
+            ;; ....
+            ;; Z
+            "YOU CHAR TABLE FOR Z"))
+     (setq zh-lib-scheme nil)
+     (setq zh-lib-char-table my-char-table)
+   #+END_SRC
 
 * Functions
 
 ** zh-lib-build-regexp-char
 
-=zh-lib-build-regexp-char= converts a letter to a regular expression
-containing all the Chinese characters whose zhongwen start with the
-letter.  It accepts three parameters:
+   =zh-lib-build-regexp-char= converts a letter to a regular
+   expression containing all the Chinese characters whose zhongwen
+   start with the letter.  It accepts three parameters:
 
-: char &optional no-punctuation-p only-chinese-p
+   : char &optional no-punctuation-p only-chinese-p
 
-The first parameter =char= is the letter to be converted. The latter
-three parameters are optional.
+   The first parameter =char= is the letter to be converted. The
+   latter two parameters are optional.
 
-- If =no-punctuation-p= is =t=: it will not convert English punctuation
-  to Chinese punctuation.
+   - If =no-punctuation-p= is =t=: it will not convert English
+     punctuation to Chinese punctuation.
 
-- If =only-chinese-p= is =t=: the resulting regular expression doesn't
-  contain the English letter =char=.
+   - If =only-chinese-p= is =t=: the resulting regular expression
+     doesn't contain the English letter =char=.
 
-When converting English punctuation to Chinese/English punctuation, it
-uses the following table:
+   When converting English punctuation to Chinese/English punctuation,
+   it uses the following table:
 
-| English Punctuation | Chinese & English Punctuation |
-|---------------------+-------------------------------|
-| ,                   | ，,                           |
-| .                   | 。.                           |
-| ?                   | ？?                           |
-| :                   | ：:                           |
-| !                   | ！!                           |
-| -                   | —-                            |
-| ~                   | ～~                           |
-| $                   | ￥$                           |
-| *                   | ×*＊·・                       |
-|                     | 　                            |
-| {                   | 『〖｛{                       |
-| }                   | 』〗｝}                       |
-| <                   | 《<                           |
-| >                   | 》>                           |
-| [                   | [「【［                       |
-| ]                   | ]」】］                       |
-| ;                   | ；;                           |
-| \                   | 、\                           |
-| (                   | （(                           |
-| )                   | ）)                           |
-| '                   | ‘’'                           |
-| "                   | “”"                           |
+   | English Punctuation | Chinese & English Punctuation |
+   |---------------------+-------------------------------|
+   | ,                   | ，,                           |
+   | .                   | 。.                           |
+   | ?                   | ？?                           |
+   | :                   | ：:                           |
+   | !                   | ！!                           |
+   | -                   | —-                            |
+   | ~                   | ～~                           |
+   | $                   | ￥$                           |
+   | *                   | ×*＊·・                       |
+   |                     | 　                            |
+   | {                   | 『〖｛{                       |
+   | }                   | 』〗｝}                       |
+   | <                   | 《<                           |
+   | >                   | 》>                           |
+   | [                   | [「【［                       |
+   | ]                   | ]」】］                       |
+   | ;                   | ；;                           |
+   | \                   | 、\                           |
+   | (                   | （(                           |
+   | )                   | ）)                           |
+   | '                   | ‘’'                           |
+   | "                   | “”"                           |
 
 ** zh-lib-build-regexp-string
 
-It is same as =zh-lib-build-regexp-char=, except that its first
-parameter is a string so that it can convert a sequence of letters to a
-regular expression.
+   It is the same as =zh-lib-build-regexp-char=, except that its first
+   parameter is a string so that it can convert a sequence of letters
+   to a regular expression.
 
 ** zh-lib-build-regexp
 
-Build regexp from parameters for search.
+   Build regexp from parameters for search.
 
 * Setup
 
-#+BEGIN_SRC elisp
-  (add-to-list 'load-path "path/to/zh-lib")
-  (require 'zh-lib)
-  (setq zh-lib-scheme 'simplified-traditional-quanpin-all)
-#+END_SRC
-
+  #+BEGIN_SRC elisp
+    (add-to-list 'load-path "path/to/zh-lib")
+    (require 'zh-lib)
+    (setq zh-lib-scheme 'simplified-traditional-quanpin-all)
+  #+END_SRC

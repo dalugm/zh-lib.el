@@ -1,10 +1,8 @@
 ;;; zh-lib.el --- Zhongwen library for Emacs -*- lexical-binding: t; -*-
 
-;;; Copyright (C) 2020-2021 dalu
-
 ;; Author: dalu <mou.tong@qq.com>
 ;; URL: https://github.com/dalugm/zh-lib.el
-;; Version: 0.1
+;; Version: 0.1.0
 ;; Package-Requires: (emacs "24")
 ;; Keywords: Chinese, library
 
