@@ -42,14 +42,14 @@
 
 Possible values:
 - nil: user specified char table.
-- 'simplified-quanpin-all.
-- 'simplified-quanpin-common: common used 3500 characters.
-- 'simplified-xiaohe-all.
-- 'simplified-pinyinjiajia-all.
-- 'simplified-ziranma-all.
-- 'simplified-weiruan-all.
-- 'traditional-quanpin-all.
-- 'simplified-traditional-quanpin-all."
+- \\='simplified-quanpin-all.
+- \\='simplified-quanpin-common: common used 3500 characters.
+- \\='simplified-xiaohe-all.
+- \\='simplified-pinyinjiajia-all.
+- \\='simplified-ziranma-all.
+- \\='simplified-weiruan-all.
+- \\='traditional-quanpin-all.
+- \\='simplified-traditional-quanpin-all."
   :type 'symbol
   :group 'zh-lib)
 
