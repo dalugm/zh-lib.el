@@ -74,38 +74,38 @@ Possible values:
 (defun zh-lib--get-char-table ()
   "Get char table for Chinese."
   (cond
-    ;; use simplified quanpin
-    ((eq zh-lib-scheme 'simplified-quanpin-all)
-      (unless (boundp 'zh-lib--simplified-quanpin-all)
-        (zh-lib--load-char-table-file "simplified-quanpin-all"))
-      zh-lib--simplified-quanpin-all)
-    ;; use simplified common
-    ((eq zh-lib-scheme 'simplified-quanpin-common)
-      (unless (boundp 'zh-lib--simplified-quanpin-common)
-        (zh-lib--load-char-table-file "simplified-quanpin-common"))
-      zh-lib--simplified-quanpin-common)
-    ;; use simplified xiaohe
-    ((memq zh-lib-scheme (list
-                           'simplified-xiaohe-all
-                           'simplified-pinyinjiajia-all
-                           'simplified-ziranma-all
-                           'simplified-weiruan-all))
-      (unless (boundp 'zh-lib--simplified-xiaohe-all)
-        (zh-lib--load-char-table-file "simplified-xiaohe-all"))
-      zh-lib--simplified-xiaohe-all)
-    ;; use traditional quanpin
-    ((eq zh-lib-scheme 'traditional-quanpin-all)
-      (unless (boundp 'zh-lib--traditional-quanpin-all)
-        (zh-lib--load-char-table-file "traditional-quanpin-all"))
-      zh-lib--traditional-quanpin-all)
-    ;; use simplified and traditional quanpin
-    ((eq zh-lib-scheme 'simplified-traditional-quanpin-all)
-      (unless (boundp 'zh-lib--simplified-traditional-quanpin-all)
-        (zh-lib--load-char-table-file "simplified-traditional-quanpin-all"))
-      zh-lib--simplified-traditional-quanpin-all)
-    ;; user specified char table
-    ((not zh-lib-scheme)
-      zh-lib-char-table)))
+   ;; use simplified quanpin
+   ((eq zh-lib-scheme 'simplified-quanpin-all)
+    (unless (boundp 'zh-lib--simplified-quanpin-all)
+      (zh-lib--load-char-table-file "simplified-quanpin-all"))
+    zh-lib--simplified-quanpin-all)
+   ;; use simplified common
+   ((eq zh-lib-scheme 'simplified-quanpin-common)
+    (unless (boundp 'zh-lib--simplified-quanpin-common)
+      (zh-lib--load-char-table-file "simplified-quanpin-common"))
+    zh-lib--simplified-quanpin-common)
+   ;; use simplified xiaohe
+   ((memq zh-lib-scheme (list
+                         'simplified-xiaohe-all
+                         'simplified-pinyinjiajia-all
+                         'simplified-ziranma-all
+                         'simplified-weiruan-all))
+    (unless (boundp 'zh-lib--simplified-xiaohe-all)
+      (zh-lib--load-char-table-file "simplified-xiaohe-all"))
+    zh-lib--simplified-xiaohe-all)
+   ;; use traditional quanpin
+   ((eq zh-lib-scheme 'traditional-quanpin-all)
+    (unless (boundp 'zh-lib--traditional-quanpin-all)
+      (zh-lib--load-char-table-file "traditional-quanpin-all"))
+    zh-lib--traditional-quanpin-all)
+   ;; use simplified and traditional quanpin
+   ((eq zh-lib-scheme 'simplified-traditional-quanpin-all)
+    (unless (boundp 'zh-lib--simplified-traditional-quanpin-all)
+      (zh-lib--load-char-table-file "simplified-traditional-quanpin-all"))
+    zh-lib--simplified-traditional-quanpin-all)
+   ;; user specified char table
+   ((not zh-lib-scheme)
+    zh-lib-char-table)))
 
 (defun zh-lib--get-punctuation-alist()
   "Get punctuation alist."
@@ -114,7 +114,7 @@ Possible values:
   zh-lib--punctuation-alist)
 
 (defun zh-lib-build-regexp-char
-  (char &optional no-punctuation-p only-chinese-p)
+    (char &optional no-punctuation-p only-chinese-p)
   "Build regexp for a character CHAR.
 
 NO-PUNCTUATION-P: Punctuations are not included.
@@ -124,8 +124,8 @@ ONLY-CHINESE-P: English characters are not included."
     (if (or (>= diff 26) (< diff 0))
         (or (and (not no-punctuation-p)
                  (assoc-default
-                   char
-                   (zh-lib--get-punctuation-alist)))
+                  char
+                  (zh-lib--get-punctuation-alist)))
             (regexp-quote (string char)))
       (setq regexp (nth diff (zh-lib--get-char-table)))
       (if only-chinese-p
@@ -135,26 +135,26 @@ ONLY-CHINESE-P: English characters are not included."
         (format "[%c%s]" char regexp)))))
 
 (defun zh-lib-build-regexp-string
-  (str &optional no-punc-p only-chinese-p)
+    (str &optional no-punc-p only-chinese-p)
   "Build regexp for a string STR.
 
 NO-PUNC-P: Punctuations are not included.
 ONLY-CHINESE-P: English characters are not included."
   (mapconcat
-    (lambda (char)
-      (zh-lib-build-regexp-char char no-punc-p only-chinese-p))
-    str
-    ""))
+   (lambda (char)
+     (zh-lib-build-regexp-char char no-punc-p only-chinese-p))
+   str
+   ""))
 
 (defun zh-lib-build-regexp (thing)
-  "Build regexp form THING for search."
+  "Build regexp from THING for search."
   (cond
-    ((integerp thing)
-      (zh-lib-build-regexp-char
-        thing (not zh-lib-with-punctuation)))
-    ((stringp thing)
-      (zh-lib-build-regexp-string
-        thing (not zh-lib-with-punctuation)))))
+   ((integerp thing)
+    (zh-lib-build-regexp-char
+     thing (not zh-lib-with-punctuation)))
+   ((stringp thing)
+    (zh-lib-build-regexp-string
+     thing (not zh-lib-with-punctuation)))))
 
 (provide 'zh-lib)
 
